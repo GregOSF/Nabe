@@ -1,0 +1,46 @@
+/*#jumbo {
+	background-color: rgba(255,255,255,0.5);
+	text-align: center;
+	background: url('http://cahillfilms.com/wp-content/uploads/2014/02/C9A79211.jpg');
+	background-size: cover;
+	padding-top: 50px;
+}	*/
+
+#nabeNav {
+	background-color: black;
+	
+}
+#nabetitle {
+	color: white;
+	letter-spacing: 20px;
+	font-size: 150px;
+
+}
+
+#pickCityTitle {
+	color: white;
+	font-size: 75px;
+}
+
+body {
+	background: url('http://cahillfilms.com/wp-content/uploads/2014/02/C9A79211.jpg');
+	background-size: cover;
+	text-align: center;;
+	padding-top: 150px;
+}
+
+#logInButton{
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+#signUpButton {
+	padding-left: 30px;
+	padding-right: 30px;
+
+}
+
+#cityList {
+	color: white;
+	font-size: 25px;
+}
