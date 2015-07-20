@@ -31,10 +31,10 @@ var nabesSchema = new Schema ({
 		type: 'string',
 		default: ""
 	},
-	nabesTags: [{
+	nabesTags: {
 		type: 'string',
 		default: ""
-	}],
+	},
 	cityName: {
 		type: 'string',
 		default: ""
