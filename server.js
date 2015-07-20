@@ -7,7 +7,14 @@ var express = require('express'),
     Nabes = require('./models/nabe');
 
 // connect mongoose
-mongoose.connect("mongodb://localhost/nabes")
+mongoose.connect("mongodb://localhost/nabes");
+
+// connect Mongoose with Heroku
+mongoose.connect(
+  process.env.MONGOLAB_URI ||
+  process.env.MONGOHQ_URL ||
+  'mongodb://localhost/nabes'
+);
 
 // tell app to use bodyParser middleware
 app.use(bodyParser.urlencoded({extended: true}));
