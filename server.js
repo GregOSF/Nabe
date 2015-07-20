@@ -6,8 +6,8 @@ var express = require('express'),
     mongoose = require('mongoose'),
     Nabes = require('./models/nabe');
 
-// connect mongoose
-mongoose.connect("mongodb://localhost/nabes");
+// // connect mongoose
+// mongoose.connect("mongodb://localhost/nabes");
 
 // connect Mongoose with Heroku
 mongoose.connect(
@@ -46,19 +46,21 @@ app.get('/api/cities', function (req, res) {
 });
 
 // set up post route to add new neighborhood attributes
-app.post('/api/nabes', function (req, res) {
-  // create new blogpost with form data (`req.body`)
-  var newNabe = new Nabes({
-    nabesName: req.body.nabesName,
-    nabesDesc: req.body.nabesDesc,
-    nabesTags: req.body.nabesTags,
-    cityName: req.body.cityName
-  });
-  // save new blogpost in db
-  newNabe.save(function (err, savedNabe) {
-    res.json(savedNabe);
-  });
-});
+// app.post('/api/nabes', function (req, res) {
+//   // create new blogpost with form data (`req.body`)
+//   var newNabe = new Nabes({
+//     nabesName: req.body.nabesName,
+//     nabesDesc: req.body.nabesDesc,
+//     nabesTags: req.body.nabesTags,
+//     cityName: req.body.cityName
+//   });
+//   // save new blogpost in db
+//   newNabe.save(function (err, savedNabe) {
+//     res.json(savedNabe);
+//   });
+// });
+
+
 
 // listen on port 3000
 app.listen(process.env.PORT || 3000, function () {
