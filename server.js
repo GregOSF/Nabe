@@ -2,7 +2,11 @@
 var express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
-    _ = require('underscore');
+    _ = require('underscore'),
+    mongoose = require('mongoose');
+
+// connect mongoose
+mongoose.connect("mongodb://localhost/pickCity")
 
 // tell app to use bodyParser middleware
 app.use(bodyParser.urlencoded({extended: true}));
