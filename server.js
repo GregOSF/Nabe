@@ -44,7 +44,7 @@ app.post('/api/nabes', function (req, res) {
   var newNabe = new Nabes({
     nabesName: req.body.nabesName,
     nabesDesc: req.body.nabesDesc,
-    nabesTags: req.body.nabesTags
+    nabesTags: req.body.nabesTags,
     cityName: req.body.cityName
   });
   // save new blogpost in db
