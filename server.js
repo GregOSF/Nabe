@@ -32,13 +32,17 @@ app.get('/pickCity', function (req, res) {
   res.sendFile(__dirname + '/public/views/pickCity.html');
 });
 
-// var cities = [
-// 	{id: 1, city: 'New York'},
-// 	{id: 2, city: 'San Francisco'},
-// 	{id: 3, city: 'Los Angeles'},
-// 	{id: 4, city: 'Chicago'},
-// 	{id: 5, city: 'Miami'},
-// ];
+// var City = function (full, citySeed) {
+//   var cityExists = Nabes.length;
+//   if (cityExists > 0) {
+//     console.log('seed already exists');
+//   } else {db.}
+// }
+
+var cities = [
+	{city: 'New York'},
+	{city: 'San Francisco'},
+];
 
 // set up root route to respond with 'hello world'
 app.get('/api/cities', function (req, res) {
