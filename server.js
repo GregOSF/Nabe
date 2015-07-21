@@ -4,7 +4,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     _ = require('underscore'),
     mongoose = require('mongoose'),
-    Nabes = require('./models/nabes');
+    NabesSF = require('./models/nabes');
     // Seed = require('./seed.js');
 
 // // connect mongoose
@@ -67,7 +67,7 @@ app.get('/pickCity', function (req, res) {
 // });
 
 app.get('/api/sfNabes', function (req, res) {
-  Nabes.find(function (err, sfneighb) {
+  NabesSF.find(function (err, sfneighb) {
     res.json(sfneighb);
   });
 });
@@ -75,7 +75,7 @@ app.get('/api/sfNabes', function (req, res) {
 // set up post route to post new nabes
 app.post('/api/sfNabes', function (req, res) {
   // create new blogpost with form data (`req.body`)
-  var newNabe = new Nabes({
+  var newNabe = new NabesSF({
     nabesName: req.body.nabesName,
     nabesTags: req.body.nabesTags,
     cityName: req.body.cityName
@@ -85,6 +85,18 @@ app.post('/api/sfNabes', function (req, res) {
     res.json(savedNabe);
   });
 });
+
+// delete SF nabes
+app.delete('/api/sfNabes/:nabesName', function (req, res) {
+  // set the value of the id
+  var targetNabe = req.params.nabesName;
+
+  // find blogpost in db by id and remove
+  NabesSF.findOneAndRemove({nabesName: targetNabe}, function (err, deletedNabe) {
+    res.json(deletedNabe);
+  });
+});
+
 // set up post route to add new neighborhood attributes
 // app.post('/api/nabes', function (req, res) {
 //   // create new blogpost with form data (`req.body`)
