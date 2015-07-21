@@ -77,14 +77,30 @@ app.post('/api/sfNabes', function (req, res) {
   // create new blogpost with form data (`req.body`)
   var newNabe = new NabesSF({
     nabesName: req.body.nabesName,
-    nabesTags: req.body.nabesTags,
-    cityName: req.body.cityName
+    nabesTags: req.body.nabesTags
   });
   // save new blogpost in db
   newNabe.save(function (err, savedNabe) {
     res.json(savedNabe);
   });
 });
+
+app.put('/api/sfNabes/:nabesName', function (req, res) {
+  // set the value of the id
+  var targetNabe = req.params.nabesName;
+  // find blogpost in db by id
+  NabesSF.findOne({nabesName: targetNabe}, function (err, foundSfNabe) {
+    // update the blogpost's word and definition
+    foundSfNabe.nabesName = req.body.nabesName;
+    foundSfNabe.nabesTags = req.body.nabesTags;
+
+    // save updated blogpost in db
+    foundSfNabe.save(function (err, savedNabe) {
+      res.json(savedNabe);
+    });
+  });
+});
+
 
 // delete SF nabes
 app.delete('/api/sfNabes/:nabesName', function (req, res) {
