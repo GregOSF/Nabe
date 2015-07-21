@@ -6,6 +6,10 @@
 	padding-top: 50px;
 }	*/
 
+@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900);
+
+/* reset */
+
 #nabeNav {
 	background-color: black;
 	
@@ -26,7 +30,7 @@ body {
 	background: url('http://cahillfilms.com/wp-content/uploads/2014/02/C9A79211.jpg');
 	background-size: cover;
 	text-align: center;;
-	padding-top: 150px;
+	padding-top: 50px;
 }
 
 #logInButton{
