@@ -4,7 +4,8 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     _ = require('underscore'),
     mongoose = require('mongoose'),
-    Nabes = require('./models/nabe');
+    Nabes = require('./models/nabes');
+    // Seed = require('./seed.js');
 
 // // connect mongoose
 // mongoose.connect("mongodb://localhost/nabes");
@@ -13,7 +14,7 @@ var express = require('express'),
 mongoose.connect(
   process.env.MONGOLAB_URI ||
   process.env.MONGOHQ_URL ||
-  'mongodb://localhost/nabes'
+  'mongodb://localhost/nabe1'
 );
 
 // tell app to use bodyParser middleware
@@ -32,6 +33,22 @@ app.get('/pickCity', function (req, res) {
   res.sendFile(__dirname + '/public/views/pickCity.html');
 });
 
+
+// create new model
+// var sfCastro = new Nabes ({
+//     nabesName: "Castro", 
+//     nabesTags: "Fabulous",
+//     cityName: "San Francisco"
+//   });
+
+//   sfCastro.save(function (err) {
+//     if (err) {
+//       return err;
+//     } else {
+//       console.log("Castro saved")
+//     }
+//   });
+
 // var City = function (full, citySeed) {
 //   var cityExists = Nabes.length;
 //   if (cityExists > 0) {
@@ -39,16 +56,35 @@ app.get('/pickCity', function (req, res) {
 //   } else {db.}
 // }
 
-var cities = [
-	{city: 'New York'},
-	{city: 'San Francisco'},
-];
+// var cities = [
+// 	{city: 'New York'},
+// 	{city: 'San Francisco'},
+// ];
 
 // set up root route to respond with 'hello world'
-app.get('/api/cities', function (req, res) {
-  res.json(cities);
+// app.get('/api/cities', function (req, res) {
+//   res.json(cities);
+// });
+
+app.get('/api/sfNabes', function (req, res) {
+  Nabes.find(function (err, sfneighb) {
+    res.json(sfneighb);
+  });
 });
 
+// set up post route to post new nabes
+app.post('/api/sfNabes', function (req, res) {
+  // create new blogpost with form data (`req.body`)
+  var newNabe = new Nabes({
+    nabesName: req.body.nabesName,
+    nabesTags: req.body.nabesTags,
+    cityName: req.body.cityName
+  });
+  // save new blogpost in db
+  newNabe.save(function (err, savedNabe) {
+    res.json(savedNabe);
+  });
+});
 // set up post route to add new neighborhood attributes
 // app.post('/api/nabes', function (req, res) {
 //   // create new blogpost with form data (`req.body`)
