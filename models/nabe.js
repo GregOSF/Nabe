@@ -14,10 +14,6 @@ var citySchema = new Schema({
 	cityNabes: {
 		type: 'string',
 		default: ""
-	},
-	users: {
-		type: 'string',
-		default: ""
 	}
 });
 
@@ -27,18 +23,14 @@ var nabesSchema = new Schema ({
 		type: 'string',
 		default: ""
 	},
-	nabesDesc: {
+	nabesTags: [{
 		type: 'string',
 		default: ""
-	},
-	nabesTags: {
-		type: 'string',
-		default: ""
-	},
+	}],
 	cityName: {
 		type: 'string',
 		default: ""
-	},
+	}
 });
 
 //create models for city and nabe
