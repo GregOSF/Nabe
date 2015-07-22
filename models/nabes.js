@@ -44,9 +44,9 @@ var NabesNYSchema = new Schema ({
 //create models for city and nabe
 var City = mongoose.model('City', citySchema);
 var NabesSF = mongoose.model('nabessfs', NabesSFSchema);
-// var NabesNY = mongoose.model('nabesNY', NabesNYSchema);
+var NabesNY = mongoose.model('nabesNY', NabesNYSchema);
 
 // export models
 module.exports = City;
 module.exports = NabesSF;
-// module.exports = NabesNY;
+module.exports = NabesNY;
