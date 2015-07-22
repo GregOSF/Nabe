@@ -1,35 +1,77 @@
 $(function() {
 
-  var nabeController = {
+  // var nabeController = {
 
-    // phrase template
-    template: _.template($('#cityTemplate').html()),
+  //   // phrase template
+  //   template: _.template($('#cityTemplate').html()),
 
-    // pass blog posts through template and append to view
+  //   //navTemplate
+  //   // navTemplate: _.template($('#nav-template').html()),
 
-    render: function(cityObj) {
-      var $citiesHtml = $(nabeController.template(cityObj));
-      $('#pickCityList').prepend($citiesHtml);
-    },
+  //   // pass blog posts through template and append to view
 
-    // List all blog posts
-    all: function() {
-      $.get ('/api/cities', function(data) {
-        var allCities = data;
+  //   render: function(cityObj) {
+  //     var $citiesHtml = $(nabeController.template(cityObj));
+  //     $('#pickCityList').prepend($citiesHtml);
+  //   },
 
-        _.each(allCities, function(cities) {
-          nabeController.render(cities);
-        // });
-        // postController.addEventHandlers();
+  //   // List all blog posts
+  //   all: function() {
+  //     $.get ('/api/cities', function(data) {
+  //       var allCities = data;
+
+  //       _.each(allCities, function(cities) {
+  //         nabeController.render(cities);
+  //       // });
+  //       // postController.addEventHandlers();
+  //       });
+  //     });
+  //   }
+
+  //     // // get current (logged-in) user
+  //     // showCurrentUser: function() {
+  //     //   // AJAX call to server to GET /api/users/current
+  //     //   $.get('/api/users/current', function(user) {
+  //     //     console.log(user);
+
+  //     //     // pass current user through template for nav links
+  //     //     $navHtml = $(mainController.navTemplate({currentUser: user}));
+
+  //     //     // append nav links HTML to page
+  //     //     $('#nav-links').append($navHtml);
+  //     //   });
+  //     // }
+  //   };
+
+
+
+
+
+var mainController = {
+
+    // compile underscore template for nav links
+    navTemplate: _.template($('#nav-template').html()),
+
+    // get current (logged-in) user
+    showCurrentUser: function() {
+      // AJAX call to server to GET /api/users/current
+      $.get('/api/users/current', function(user) {
+        console.log(user);
+
+        // pass current user through template for nav links
+        $navHtml = $(mainController.navTemplate({currentUser: user}));
+
+        // append nav links HTML to page
+        $('#nav-links').append($navHtml);
       });
+    }
+  };
 
-    
+  // nabeController.all();
+  mainController.showCurrentUser();
 
 
-    });
-  }
-};
-nabeController.all();
+
 });
 
     // Post new data
