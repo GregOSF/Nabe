@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>nabe</title>
@@ -15,10 +14,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
     <!-- YOUR CSS -->
     <link type="text/css" rel="stylesheet" href="../styles/style.css">
-
-
 </head>
 <body>
+	<!-- Insert Nav Bar -->	
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	  <div class="container">
 	  <div class="container">
@@ -39,16 +37,63 @@
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container -->
 	</nav>
-	
-	
+	<!-- bootstrap container -->
 	<div class="container">
-
 		<div class="row">
 			<div class="column-lg-12" id="titleContainer">
 				<h1><span id="nabetitle">nabe</span></h1>
 			</div>
 		</div>
+		<div class="row top-buffer">
+			<div class="column-lg-12">
+				<div class="dropdown">
+				  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				    Select a City
+				    <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				    <li><a href="#">San Francisco</a></li>
+				    <li><a href="#">New York</a></li>
+				  </ul>
+				</div>
+			</div>
+		</div>
+		<div class="row top-buffer">
+			<div class="column-lg-12">
+				<div class="dropdown">
+				  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				    Select a Neighborhood
+				    <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+				    <li><a href="#">San Francisco</a></li>
+				    <li><a href="#">New York</a></li>
+				    <li role="separator" class="divider"></li>
+				    <li><a href="#">Add a Nabe</a></li>
+				    <li role="separator" class="divider"></li>
+				    <li><a href="#">Edit a Nabe Tag</a></li>
+				    <li role="separator" class="divider"></li>
+				    <li><a href="#">Delete a Nabe</a></li>
+				  </ul>
+				</div>
+			</div>
+		</div>
+		<div class="row top-buffer">
+	        <div class="col-xs-6">
+	        	 <div class="panel panel-default alphaClass">
+	        	 	<p>SF NABE</p>
+	        	 </div>
+	        </div>
+	        <div class="col-xs-6">
+	        	<div class="panel panel-default alphaClass">
+	        		<p>NY NABE</p>	
+	        	</div>
+			</div>
+		</div>
 	</div>
+
+
+
 			
 
 
@@ -64,7 +109,7 @@
 
 
 
-	</div>
+
 	<!-- SCRIPTS -->
 	    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
