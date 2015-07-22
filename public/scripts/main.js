@@ -2,33 +2,56 @@ $(function() {
 
   var nabeController = {
 
-    // phrase template
-    template: _.template($('#nabeListTemplate').html()),
+    // Nabe Dropdown Template
+    templateDrop: _.template($('#nabeListTemplate').html()),
 
-
+    // NabeSF show
+    templateSf: _.template($('#nabeSfTemp').html()),
   
 
     // pass blog posts through template and append to view
 
-    render: function(nabeObj) {
-      var $nabesHtml = $(nabeController.template(nabeObj));
+    renderNabeDrop: function(nabeObj) {
+      var $nabesHtml = $(nabeController.templateDrop(nabeObj));
       $('#nabeSelect').append($nabesHtml);
     },
 
+    renderSfPanel: function(nabe1) {
+      var $nabesHtml = $(nabeController.templateSf(nabe1));
+      $('#nabeSfPanel').append($nabesHtml);
+    },
+
     // List all blog posts
-    all: function() {
+    nabeDrops: function() {
       $.get ('/api/sfNabes', function(data) {
         var allNabes = data;
 
         _.each(allNabes, function(nabe) {
-          nabeController.render(nabe);
+          nabeController.renderNabeDrop(nabe);
+          nabeController.renderSfPanel(nabe);
         // });
         // postController.addEventHandlers();
         });
       });
-    }};
+    },
 
-    nabeController.all();
+    nabePanelOne: function() {
+      $.get ('/api/sfNabes', function(data) {
+        var nabetags = data;
+
+        _.each(nabetags, function(nabe2) {
+          nabeController.renderSfPanel(nabe);
+        // });
+        // postController.addEventHandlers();
+        });
+      });
+    },
+
+
+  };
+
+    nabeController.nabeDrops();
+    nabeController.nabePanelOne();
 
 var navController = {
 
