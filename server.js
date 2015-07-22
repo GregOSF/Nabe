@@ -44,26 +44,6 @@ app.use(session({
 }));
 
 
-// signup route with placeholder response
-app.get('/api/signup', function (req, res) {
-  res.send('coming soon');
-});
-
-// user profile page
-
-
-// user submits the signup form
-app.post('/api/users', function (req, res) {
-
-  // grab user data from params (req.body)
-  var newUser = req.body.user;
-
-  // create new user with secure password
-  User.createSecure(newUser.email, newUser.password, function (err, user) {
-    res.send(user);
-  });
-});
-
 // middleware to manage sessions
 app.use('/', function (req, res, next) {
   // saves userId in session for logged-in user
@@ -88,6 +68,30 @@ app.use('/', function (req, res, next) {
   next();
 });
 
+
+// signup route with placeholder response
+app.get('/api/signup', function (req, res) {
+  res.send('coming soon');
+});
+
+// user profile page
+
+
+// user submits the signup form
+app.post('/api/users', function (req, res) {
+
+  // grab user data from params (req.body)
+  var newUser = req.body.user;
+
+  // create new user with secure password
+  User.createSecure(newUser.email, newUser.password, function (err, user) {
+    // res.send(user);
+    req.login(user);
+    res.redirect('/');
+  });
+});
+
+
 app.get('/api/users/current', function (req, res) {
   // check for current (logged-in) user
   req.currentUser(function (err, user) {
@@ -108,7 +112,7 @@ app.post('/api/login', function (req, res) {
     req.login(user);
 
     // redirect to user profile
-    res.redirect('/api/users/current');
+    res.redirect('/');
   });
 });
 
