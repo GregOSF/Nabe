@@ -17,8 +17,20 @@ var citySchema = new Schema({
 	}
 });
 
-// create schema for neighborhoods
+// create schema for sf neighborhoods
 var NabesSFSchema = new Schema ({
+	nabesName: {
+		type: 'string',
+		default: ""
+	},
+	nabesTags: {
+		type: 'string',
+		default: ""
+	}	
+});
+
+// create schema for ny neighborhoods
+var NabesNYSchema = new Schema ({
 	nabesName: {
 		type: 'string',
 		default: ""
@@ -31,8 +43,10 @@ var NabesSFSchema = new Schema ({
 
 //create models for city and nabe
 var City = mongoose.model('City', citySchema);
-var NabesSF = mongoose.model('nabesSF', NabesSFSchema);
+var NabesSF = mongoose.model('nabessfs', NabesSFSchema);
+// var NabesNY = mongoose.model('nabesNY', NabesNYSchema);
 
 // export models
 module.exports = City;
 module.exports = NabesSF;
+// module.exports = NabesNY;
