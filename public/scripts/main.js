@@ -1,53 +1,36 @@
 $(function() {
 
-  // var nabeController = {
+  var nabeController = {
 
-  //   // phrase template
-  //   template: _.template($('#cityTemplate').html()),
-
-  //   //navTemplate
-  //   // navTemplate: _.template($('#nav-template').html()),
-
-  //   // pass blog posts through template and append to view
-
-  //   render: function(cityObj) {
-  //     var $citiesHtml = $(nabeController.template(cityObj));
-  //     $('#pickCityList').prepend($citiesHtml);
-  //   },
-
-  //   // List all blog posts
-  //   all: function() {
-  //     $.get ('/api/cities', function(data) {
-  //       var allCities = data;
-
-  //       _.each(allCities, function(cities) {
-  //         nabeController.render(cities);
-  //       // });
-  //       // postController.addEventHandlers();
-  //       });
-  //     });
-  //   }
-
-  //     // // get current (logged-in) user
-  //     // showCurrentUser: function() {
-  //     //   // AJAX call to server to GET /api/users/current
-  //     //   $.get('/api/users/current', function(user) {
-  //     //     console.log(user);
-
-  //     //     // pass current user through template for nav links
-  //     //     $navHtml = $(mainController.navTemplate({currentUser: user}));
-
-  //     //     // append nav links HTML to page
-  //     //     $('#nav-links').append($navHtml);
-  //     //   });
-  //     // }
-  //   };
+    // phrase template
+    template: _.template($('#nabeListTemplate').html()),
 
 
+  
 
+    // pass blog posts through template and append to view
 
+    render: function(nabeObj) {
+      var $nabesHtml = $(nabeController.template(nabeObj));
+      $('#nabeSelect').append($nabesHtml);
+    },
 
-var mainController = {
+    // List all blog posts
+    all: function() {
+      $.get ('/api/sfNabes', function(data) {
+        var allNabes = data;
+
+        _.each(allNabes, function(nabe) {
+          nabeController.render(nabe);
+        // });
+        // postController.addEventHandlers();
+        });
+      });
+    }};
+
+    nabeController.all();
+
+var navController = {
 
     // compile underscore template for nav links
     navTemplate: _.template($('#nav-template').html()),
@@ -59,7 +42,7 @@ var mainController = {
         console.log(user);
 
         // pass current user through template for nav links
-        $navHtml = $(mainController.navTemplate({currentUser: user}));
+        $navHtml = $(navController.navTemplate({currentUser: user}));
 
         // append nav links HTML to page
         $('#nav-links').append($navHtml);
@@ -68,7 +51,7 @@ var mainController = {
   };
 
   // nabeController.all();
-  mainController.showCurrentUser();
+  navController.showCurrentUser();
 
 
 
