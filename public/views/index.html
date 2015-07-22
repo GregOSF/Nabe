@@ -148,7 +148,10 @@
 		<div class="row top-buffer">
 	        <div class="col-xs-6">
 	        	 <div class="panel panel-default alphaClass">
-	        	 	<p>SF NABE</p>
+	        	 	<div id="nabeSfPanel">
+	        	 		
+	        	 	</div>
+	        	 	
 	        	 </div>
 	        </div>
 	        <div class="col-xs-6">
@@ -189,11 +192,20 @@
 	    <!-- TEMPLATE FOR NABE DROPDOWN -->
 	    <script type="text/template" id="nabeListTemplate">
 
-	        <div class="blogPost" id="nabeListItems" data-id="<%= _id %>">
+	        <div class="nabeLizt" id="nabeListItems" data-id="<%= _id %>">
 	        	<li><%= nabesName %></li>
 	        </div>
 	        
-	      </script>
+	    </script>
+	    <!-- TEMPLATE FOR NABE COMPARE SF -->
+	    <script type="text/template" id="nabeSfTemp">
+	    	<div class="nabeLizt" id="nabeListItems" data-id="<%= _id %>">
+	    		<li><%= nabesName %></li>
+	    		<li><%= nabesTags %></li>
+	    	</div>
+
+	    </script>
+
 
 </body>
 </html>
