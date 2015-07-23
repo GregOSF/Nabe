@@ -21,37 +21,83 @@ $(function() {
       $('#nabeSfPanel').append($nabesHtml);
     },
 
-    // List all blog posts
+    // Drop down nabes
     nabeDrops: function() {
       $.get ('/api/sfNabes', function(data) {
         var allNabes = data;
 
         _.each(allNabes, function(nabe) {
           nabeController.renderNabeDrop(nabe);
-          nabeController.renderSfPanel(nabe);
+          
         // });
         // postController.addEventHandlers();
         });
+          nabeController.nabePickClick();
       });
     },
 
-    nabePanelOne: function() {
-      $.get ('/api/sfNabes', function(data) {
-        var nabetags = data;
+    nabePickDrop: function (nabesName) {
+        $.get ('/api/sfNabes/' + nabesName, function(data) {
+          var oneNabe = data;
+          console.log(oneNabe);
+          // _.each(oneNabe, function(nabe2) {
+            nabeController.renderSfPanel(oneNabe);
+          
 
-        _.each(nabetags, function(nabe2) {
-          nabeController.renderSfPanel(nabe);
-        // });
-        // postController.addEventHandlers();
+
+          // postController.addEventHandlers();
+          // nabeController.nabePickClick();
         });
+
+    },  
+
+    nabePickClick: function () {
+
+      // $('#nabeClick').click(function(e) {
+      //     alert('alerted' + poop);
+      //     e.preventDefault();// prevent the default anchor functionality
+      // });
+
+
+      $('#nabeClick').on('click', function(event) {
+        event.preventDefault();
+        console.log("poop");
+        var nabeId = $(this).closest('#nabeListItems').attr('data-id');
+        nabeController.nabePickDrop(nabeId);
+        console.log(nabeId);
       });
-    },
+    }
+
+
+
+
+        // // find the posts's id (stored in HTML as `data-id`)
+        // var postId = $(this).closest('.blogPost').attr('data-id');
+        // // udpate the post with form data
+        // var updatedUser = $(this).find('.updated-user').val();
+        // var updatedLoc = $(this).find('.updated-loc').val();
+        // var updatedDesc = $(this).find('.updated-post').val();
+        // postController.update(postId, updatedUser, updatedLoc, updatedDesc);
+        // })
+
+
+    // nabePanelOne: function() {
+    //   $.get ('/api/sfNabes', function(data) {
+    //     var nabetags = data;
+
+    //     _.each(nabetags, function(nabe2) {
+    //       nabeController.renderSfPanel(nabe2);
+    //     // });
+    //     // postController.addEventHandlers();
+    //     });
+    //   });
+    // },
 
 
   };
 
     nabeController.nabeDrops();
-    nabeController.nabePanelOne();
+    // nabeController.nabePanelOne();
 
 var navController = {
 
