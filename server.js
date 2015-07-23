@@ -4,7 +4,8 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     _ = require('underscore'),
     mongoose = require('mongoose'),
-    NabesSF = require('./models/nabes'),
+    NabesSF = require('./models/nabes.js'),
+    City = require('./models/cities.js'),
     session = require('express-session'),
     User = require('./models/user');
     // NabesNY = require('./models/nabes');
@@ -130,6 +131,37 @@ app.get('/logout', function (req, res) {
 
 // END AUTHENTICATION
 
+// ROUTES FOR CITIES
+
+app.get('/api/cities', function (req, res) {
+  City.find(function (err, sfneighb) {
+    res.json(sfneighb);
+  });
+});
+
+app.get('/api/cities/:cityName', function (req, res) {
+  // set the value of the id
+  var targetCity = req.params.cityName;
+  // find blogpost in db by id
+  console.log(targetCity);
+  City.findOne({_id: targetCity}, function (err, foundCity) {
+    res.json(foundCity);
+  });
+});
+
+app.post('/api/cities', function (req, res) {
+  // create new 
+  var newCity = new City({
+    cityName: req.body.cityName    
+  });
+  // save new blogpost in db
+  newCity.save(function (err, savedCity) {
+    res.json(savedCity);
+  });
+});
+
+
+
 
 // ROUTES FOR SF NABES
 
@@ -138,6 +170,17 @@ app.get('/api/sfNabes', function (req, res) {
     res.json(sfneighb);
   });
 });
+
+app.get('/api/sfNabes/:nabesName', function (req, res) {
+  // set the value of the id
+  var targetName = req.params.nabesName;
+  // find blogpost in db by id
+  console.log(targetName);
+  NabesSF.findOne({_id: targetName}, function (err, foundPost) {
+    res.json(foundPost);
+  });
+});
+
 
 // set up post route to post new nabes
 app.post('/api/sfNabes', function (req, res) {
