@@ -16,8 +16,6 @@
     <link type="text/css" rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
-
-
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 	  <div class="container">
 	    <div class="navbar-header">
@@ -101,6 +99,10 @@
 	  </div>
 	</div>
 
+	
+
+
+
 
 
 	<!-- bootstrap container -->
@@ -110,21 +112,33 @@
 				<h1><span id="nabetitle">nabe</span></h1>
 			</div>
 		</div>
-		<div class="row top-buffer">
+		<div class='row'>
+			<div class='col-sm-6'>
+				<h2 class='text-center'>San Francisco</h2>
+				<div class='list-group' id='sf-list'></div>
+			</div>
+			<div class='col-sm-6'>
+				<h2 class='text-center'>New York</h2>
+				<div class='list-group' id='nyc-list'></div>
+			</div>
+		</div>
+
+<!-- 		<div class="row top-buffer">
 			<div class="column-lg-12">
 				<div class="dropdown">
 				  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 				    Select a City
 				    <span class="caret"></span>
 				  </button>
-				  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-				    <li><a href="#">San Francisco</a></li>
+				  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="citySelect">
+
+<!-- 				    <li><a href="#">San Francisco</a></li>
 				    <li><a href="#">New York</a></li>
 				  </ul>
 				</div>
 			</div>
-		</div>
-		<div class="row top-buffer">
+		</div> --> -->
+<!-- 		<div class="row top-buffer">
 			<div class="column-lg-12">
 				<div class="dropdown">
 				  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -133,14 +147,14 @@
 				  </button>
 				  <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider" id="nabeSelect">
 
-<!-- 				    <li><a href="#">San Francisco</a></li>
+				    <li><a href="#">San Francisco</a></li>
 				    <li><a href="#">New York</a></li>
 				    <li role="separator" class="divider"></li>
 				    <li><a href="#">Add a Nabe</a></li>
 				    <li role="separator" class="divider"></li>
 				    <li><a href="#">Edit a Nabe Tag</a></li>
 				    <li role="separator" class="divider"></li>
-				    <li><a href="#">Delete a Nabe</a></li> -->
+				    <li><a href="#">Delete a Nabe</a></li>
 				  </ul>
 				</div>
 			</div>
@@ -159,26 +173,8 @@
 	        		<p>NY NABE</p>	
 	        	</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
-
-
-
-			
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	<!-- SCRIPTS -->
 	    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -189,23 +185,36 @@
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 	    <!-- YOUR SCRIPTS -->
 	    <script type="text/javascript" src="../scripts/main.js"></script>
+		
+		<!-- Nabe Template -->
+		<script id="nabe-link-template" type="text/template">
+			<a href="#" id="<%= _id %>" class="<%= nabeClass %> list-group-item">
+			  <%= nabesName %>
+			</a>
+		</script>
+
+
+	    <!-- TEMPLATE FOR CITY DROPDOWN -->
+		<script type="text/template" id="cityListTemplate">
+		    <div id="cityListItems" data-id="<%= _id %>">
+		    	<li><a href="#" data-toggle="<%= cityName %>" id="cityClick"> <%= cityName %> </a></li>
+		    </div>
+		</script>
+
+
 	    <!-- TEMPLATE FOR NABE DROPDOWN -->
 	    <script type="text/template" id="nabeListTemplate">
-
-	        <div class="nabeLizt" id="nabeListItems" data-id="<%= _id %>">
+	        <div id="nabeListItems" data-id="<%= _id %>">
 	        	<li><a href="#" data-toggle="<%= nabesName %>" id="nabeClick"> <%= nabesName %> </a></li>
 	        </div>
-	        
 	    </script>
+
 	    <!-- TEMPLATE FOR NABE COMPARE SF -->
 	    <script type="text/template" id="nabeSfTemp">
 	    	<div class="nabeLizt" id="nabeListItems" data-id="<%= _id %>">
 	    		<li><%= nabesName %></li>
 	    		<li><%= nabesTags %></li>
 	    	</div>
-
 	    </script>
-
-
 </body>
 </html>
