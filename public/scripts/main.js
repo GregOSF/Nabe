@@ -1,105 +1,178 @@
 $(function() {
 
-  var nabeController = {
+  var $nabeLinkTemplate = _.template($('#nabe-link-template').html());
 
-    // Nabe Dropdown Template
-    templateDrop: _.template($('#nabeListTemplate').html()),
+  $.get('api/sfnabes', function(data){
+    _.each(data, function(nabe) {
+      nabe.nabeClass = "sf-nabe"
+      console.log(nabe)
+      $('#sf-list').append($nabeLinkTemplate(nabe));
+    })
+    $('.sf-nabe').click(function(e) {
+      var nabe = { _id: $(this).attr('id') }
+      $('.nyc-nabe').hide();
 
-    // NabeSF show
-    templateSf: _.template($('#nabeSfTemp').html()),
-  
-
-    // pass blog posts through template and append to view
-
-    renderNabeDrop: function(nabeObj) {
-      var $nabesHtml = $(nabeController.templateDrop(nabeObj));
-      $('#nabeSelect').append($nabesHtml);
-    },
-
-    renderSfPanel: function(nabe1) {
-      var $nabesHtml = $(nabeController.templateSf(nabe1));
-      $('#nabeSfPanel').append($nabesHtml);
-    },
-
-    // Drop down nabes
-    nabeDrops: function() {
-      $.get ('/api/sfNabes', function(data) {
-        var allNabes = data;
-
-        _.each(allNabes, function(nabe) {
-          nabeController.renderNabeDrop(nabe);
-          
-        // });
-        // postController.addEventHandlers();
+      $.post('/nyc-search', nabe, function(data) {
+        // data == array of nabe ids
+        _.each(data, function(el) {
+          $("#" + el).show();
         });
-          nabeController.nabePickClick();
       });
-    },
+    });
+  });
 
-    nabePickDrop: function (nabesName) {
-        $.get ('/api/sfNabes/' + nabesName, function(data) {
-          var oneNabe = data;
-          console.log(oneNabe);
-          // _.each(oneNabe, function(nabe2) {
-            nabeController.renderSfPanel(oneNabe);
-          
-
-
-          // postController.addEventHandlers();
-          // nabeController.nabePickClick();
-        });
-
-    },  
-
-    nabePickClick: function () {
-
-      // $('#nabeClick').click(function(e) {
-      //     alert('alerted' + poop);
-      //     e.preventDefault();// prevent the default anchor functionality
-      // });
-
-
-      $('#nabeClick').on('click', function(event) {
-        event.preventDefault();
-        console.log("poop");
-        var nabeId = $(this).closest('#nabeListItems').attr('data-id');
-        nabeController.nabePickDrop(nabeId);
-        console.log(nabeId);
-      });
-    }
-
-
-
-
-        // // find the posts's id (stored in HTML as `data-id`)
-        // var postId = $(this).closest('.blogPost').attr('data-id');
-        // // udpate the post with form data
-        // var updatedUser = $(this).find('.updated-user').val();
-        // var updatedLoc = $(this).find('.updated-loc').val();
-        // var updatedDesc = $(this).find('.updated-post').val();
-        // postController.update(postId, updatedUser, updatedLoc, updatedDesc);
+  $.get('api/nyNabes', function(data){
+    console.log(data);
+    _.each(data, function(nabe) {
+      nabe.nabeClass = "nyc-nabe"
+      $('#nyc-list').append($nabeLinkTemplate(nabe));
+    })
+    $('.nyc-nabe').click(function(e) {
+      var nabe = { _id: $(this).attr('id') }
+      $('.sf-nabe').hide();
+      $.post('/sf-search', nabe, function(data) {
+        // data == array of nabe ids
+        _.each(data, function(el) {
+          $("#" + el).show();
         // })
+        });
+      });
+    });
+  });
+
+  $('#clear').click(function(e) {
+    // show all nabes
+  });
 
 
-    // nabePanelOne: function() {
-    //   $.get ('/api/sfNabes', function(data) {
-    //     var nabetags = data;
-
-    //     _.each(nabetags, function(nabe2) {
-    //       nabeController.renderSfPanel(nabe2);
-    //     // });
-    //     // postController.addEventHandlers();
-    //     });
-    //   });
-    // },
+// BEGIN DROPDOWN BEGIN DROPDOWNBEGIN DROPDOWNBEGIN DROPDOWNBEGIN DROPDOWN
 
 
-  };
+  // var nabeController = {
 
-    nabeController.nabeDrops();
+  //   // City List Template
+
+  //   templateCity: _.template($('#cityListTemplate').html()),
+
+  //   // Nabe Dropdown Template
+  //   templateDrop: _.template($('#nabeListTemplate').html()),
+
+  //   // NabeSF 
+  //   templateSf: _.template($('#nabeSfTemp').html()),
+
+  //   // Nabe
+    
+  //   // Render City Dropdown
+
+  //   renderCityDrop: function(cityObj) {
+  //     var $citiesHtml = $(nabeController.templateCity(cityObj));
+  //     $('#citySelect').append($citiesHtml);
+  //   },
+
+  //   // Drop Down City
+  //   cityDrops: function() {
+  //     $.get ('/api/cities', function(data) {
+  //       var allCities = data;
+  //       _.each(allCities, function(cit) {
+  //         nabeController.renderCityDrop(cit);
+  //       });
+  //       console.log(allCities);
+  //     })
+  //   },
+
+  //   // Render Neighborhood Dropdown
+
+  //   renderNabeDrop: function(nabeObj) {
+  //     var $nabesHtml = $(nabeController.templateDrop(nabeObj));
+  //     $('#nabeSelect').append($nabesHtml);
+  //   },
+
+  //   // Render SF (Left) Panel
+
+  //   renderSfPanel: function(nabe1) {
+  //     var $nabesHtml = $(nabeController.templateSf(nabe1));
+  //     $('#nabeSfPanel').append($nabesHtml);
+  //   },
+
+  //   // Drop Down SF
+  //   nabeDrops: function() {
+  //     $.get ('/api/sfNabes', function(data) {
+  //       var allNabes = data;
+
+  //       _.each(allNabes, function(nabe) {
+  //         nabeController.renderNabeDrop(nabe);
+  //         // console.log(allNabes);
+          
+  //       // });
+  //       // postController.addEventHandlers();
+  //       });
+  //         nabeController.nabePickClick();
+  //     });
+  //   },
+
+  //   // Show Neighborhood Clicked from Dropdown
+  //   nabePickDrop: function (nabesName) {
+  //       $.get ('/api/sfNabes/' + nabesName, function(data) {
+  //         var oneNabe = data;
+  //         console.log(oneNabe);
+  //         // _.each(oneNabe, function(nabe2) {
+  //           nabeController.renderSfPanel(oneNabe);
+  //       });
+
+  //   },  
+
+  //   // Event handler for clicking nabe dropdown
+  //   nabePickClick: function () {
+
+  //     // $('#nabeClick').click(function(e) {
+  //     //     alert('alerted' + poop);
+  //     //     e.preventDefault();// prevent the default anchor functionality
+  //     // });
+
+
+  //     $('#nabeClick').on('click', function(event) {
+  //       event.preventDefault();
+  //       console.log("poop");
+  //       var nabeId = $(this).closest('#nabeListItems').attr('data-id');
+  //       nabeController.nabePickDrop(nabeId);
+  //       console.log(nabeId);
+  //     });
+  //   }
+
+
+
+
+  //       // // find the posts's id (stored in HTML as `data-id`)
+  //       // var postId = $(this).closest('.blogPost').attr('data-id');
+  //       // // udpate the post with form data
+  //       // var updatedUser = $(this).find('.updated-user').val();
+  //       // var updatedLoc = $(this).find('.updated-loc').val();
+  //       // var updatedDesc = $(this).find('.updated-post').val();
+  //       // postController.update(postId, updatedUser, updatedLoc, updatedDesc);
+  //       // })
+
+
+  //   // nabePanelOne: function() {
+  //   //   $.get ('/api/sfNabes', function(data) {
+  //   //     var nabetags = data;
+
+  //   //     _.each(nabetags, function(nabe2) {
+  //   //       nabeController.renderSfPanel(nabe2);
+  //   //     // });
+  //   //     // postController.addEventHandlers();
+  //   //     });
+  //   //   });
+  //   // },
+
+
+  // };
+
+  // nabeController.cityDrops();
+  // nabeController.nabeDrops();
+
     // nabeController.nabePanelOne();
 
-var navController = {
+  var navController = {
 
     // compile underscore template for nav links
     navTemplate: _.template($('#nav-template').html()),
@@ -121,10 +194,9 @@ var navController = {
 
   // nabeController.all();
   navController.showCurrentUser();
-
-
-
 });
+
+// END DROPDOWN END DROPDOWN END DROPDOWNEND DROPDOWNEND DROPDOWNEND DROPDOWN
 
     // Post new data
     // create: function(newUser, newPlace, newDesc) {
