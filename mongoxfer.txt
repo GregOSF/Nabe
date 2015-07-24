@@ -1,0 +1,126 @@
+[
+    {
+        "_id": "55aec984a57af7f53bd6c8cb",
+        "__v": 0,
+        "nabesTags": "Fabulous",
+        "nabesName": "Castro"
+    },
+    {
+        "_id": "55aec9bca57af7f53bd6c8cc",
+        "__v": 0,
+        "nabesTags": "Hipsters",
+        "nabesName": "Mission"
+    },
+    {
+        "_id": "55aec9dda57af7f53bd6c8ce",
+        "__v": 0,
+        "nabesTags": "Trendy",
+        "nabesName": "SOMA"
+    },
+    {
+        "_id": "55aec9e6a57af7f53bd6c8cf",
+        "__v": 0,
+        "nabesTags": "Residential",
+        "nabesName": "Richmond"
+    },
+    {
+        "_id": "55aec9f0a57af7f53bd6c8d0",
+        "__v": 0,
+        "nabesTags": "Affordable",
+        "nabesName": "Sunset"
+    },
+    {
+        "_id": "55aec9fda57af7f53bd6c8d1",
+        "__v": 0,
+        "nabesTags": "Waterfront",
+        "nabesName": "South Beach"
+    },
+    {
+        "_id": "55aeca08a57af7f53bd6c8d2",
+        "__v": 0,
+        "nabesTags": "Touristy",
+        "nabesName": "Fisherman's Wharf"
+    },
+    {
+        "_id": "55aeca1da57af7f53bd6c8d3",
+        "__v": 0,
+        "nabesTags": "Shopping",
+        "nabesName": "Union Square"
+    },
+    {
+        "_id": "55aecf81889fc3874156d50f",
+        "__v": 0,
+        "nabesTags": "Awesome",
+        "nabesName": "Marina"
+    },
+    {
+        "_id": "55b1b27afecacb3698742012",
+        "__v": 0,
+        "nabesTags": "Italian Food",
+        "nabesName": "North Beach"
+    }
+]
+
+[
+    {
+        "_id": "55b15b270401b4d43d8bc2c5",
+        "__v": 0,
+        "nabesTags": "Fabulous",
+        "nabesName": "Greenwich Village"
+    },
+    {
+        "_id": "55b15d120401b4d43d8bc2cb",
+        "__v": 0,
+        "nabesTags": "Hipsters",
+        "nabesName": "Williamsburg"
+    },
+    {
+        "_id": "55b15d230401b4d43d8bc2cc",
+        "__v": 0,
+        "nabesTags": "Italian Food",
+        "nabesName": "Little Italy"
+    },
+    {
+        "_id": "55b15d440401b4d43d8bc2cd",
+        "__v": 0,
+        "nabesTags": "Trendy",
+        "nabesName": "Meatpacking District"
+    },
+    {
+        "_id": "55b15d540401b4d43d8bc2ce",
+        "__v": 0,
+        "nabesTags": "Residential",
+        "nabesName": "Upper West Side"
+    },
+    {
+        "_id": "55b15df00401b4d43d8bc2cf",
+        "__v": 0,
+        "nabesTags": "Affordable",
+        "nabesName": "Hell's Kitchen"
+    },
+    {
+        "_id": "55b15e020401b4d43d8bc2d0",
+        "__v": 0,
+        "nabesTags": "Waterfront",
+        "nabesName": "Battery Park"
+    },
+    {
+        "_id": "55b15e1b0401b4d43d8bc2d1",
+        "__v": 0,
+        "nabesTags": "Touristy",
+        "nabesName": "Times Square"
+    },
+    {
+        "_id": "55b15e390401b4d43d8bc2d2",
+        "__v": 0,
+        "nabesTags": "Shopping",
+        "nabesName": "SoHo"
+    },
+    {
+        "_id": "55b15e500401b4d43d8bc2d3",
+        "__v": 0,
+        "nabesTags": "Awesome",
+        "nabesName": "Upper East Side"
+    }
+]
+
