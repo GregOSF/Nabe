@@ -168,7 +168,8 @@ app.post('/sf-search', function (req, res) {
       var nabeIds = _.pluck(nabes, '_id');
       res.json(nabeIds);
     });
-  });  
+  });
+  
 });
 
 
