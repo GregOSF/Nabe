@@ -5,6 +5,7 @@ var express = require('express'),
     _ = require('underscore'),
     mongoose = require('mongoose'),
     NabesSF = require('./models/nabes.js'),
+    NabesNY = require('./models/nabesny.js'),
     City = require('./models/cities.js'),
     session = require('express-session'),
     User = require('./models/user');
@@ -70,13 +71,33 @@ app.use('/', function (req, res, next) {
 });
 
 
+// app.post('/nyc-search', function (req, res) {
+//   console.log(req.body._id);
+
+//   NabesSF.findById(req.body._id).exec(function(err, nabe) {
+//     NabesNY.find({ nabesTags: nabe.nabesTags }).exec(function(err, nabes) {
+//       var nabeIds = _.pluck(nabes, '_id')
+//       res.json(nabeIds);
+//     })
+//   })
+// })
+
+// app.post('/sf-search', function (req, res) {
+//   console.log(req.body);
+//   NabesNY.findOne(req.body).exec(function(err, nabe) {
+//     NabesSF.find({ nabesTags: nabe.nabesTags }).exec(function(err, nabes) {
+//       var nabeIds = _.pluck(nabes, '_id')
+//     })
+//   })
+  
+//   res.json(nabeIds);
+// })
+
+
 // signup route with placeholder response
 app.get('/api/signup', function (req, res) {
   res.send('coming soon');
 });
-
-// user profile page
-
 
 // user submits the signup form
 app.post('/api/users', function (req, res) {
@@ -99,8 +120,6 @@ app.get('/api/users/current', function (req, res) {
     res.json(user);
   });
 });
-
-
 
 app.post('/api/login', function (req, res) {
 
@@ -127,9 +146,32 @@ app.get('/logout', function (req, res) {
   res.redirect('/');
 });
 
-
-
 // END AUTHENTICATION
+
+
+// ROUTES FOR SEARCHES
+
+app.post('/nyc-search', function (req, res) {
+  console.log(req.body._id);
+  NabesSF.findById(req.body._id).exec(function(err, nabe) {
+    NabesNY.find({ nabesTags: nabe.nabesTags }).exec(function(err, nabes) {
+      var nabeIds = _.pluck(nabes, '_id');
+      res.json(nabeIds);
+    });
+  });
+});
+
+app.post('/sf-search', function (req, res) {
+  console.log(req.body._id);
+  NabesNY.findById(req.body._id).exec(function(err, nabe) {
+    NabesSF.find({ nabesTags: nabe.nabesTags }).exec(function(err, nabes) {
+      var nabeIds = _.pluck(nabes, '_id');
+      res.json(nabeIds);
+    });
+  });  
+});
+
+
 
 // ROUTES FOR CITIES
 
@@ -159,9 +201,6 @@ app.post('/api/cities', function (req, res) {
     res.json(savedCity);
   });
 });
-
-
-
 
 // ROUTES FOR SF NABES
 
@@ -224,30 +263,41 @@ app.delete('/api/sfNabes/:id', function (req, res) {
 
 // ROUTES FOR NY NEIGHBORHOODS
 
-// app.get('/api/nyNabes', function (req, res) {
-//   NabesNY.find(function (err, nyneighb) {
-//     res.json(nyneighb);
-//   });
-// });
+app.get('/api/nyNabes', function (req, res) {
+  NabesNY.find(function (err, nyneighb) {
+    res.json(nyneighb);
+  });
+});
+
+app.get('/api/nyNabes/:nabesName', function (req, res) {
+  // set the value of the id
+  var targetName = req.params.nabesName;
+  // find blogpost in db by id
+  console.log(targetName);
+  NabesNY.findOne({_id: targetName}, function (err, foundNabe) {
+    res.json(foundNabe);
+  });
+});
+
 
 // set up post route to post new nabes
 app.post('/api/nyNabes', function (req, res) {
   // create new blogpost with form data (`req.body`)
-  var newNabe = new NabesNY({
+  var newNyNabe = new NabesNY({
     nabesName: req.body.nabesName,
     nabesTags: req.body.nabesTags
   });
   // save new blogpost in db
-  newNabe.save(function (err, savedNabe) {
+  newNyNabe.save(function (err, savedNabe) {
     res.json(savedNabe);
   });
 });
 
-app.put('/api/nyNabes/:nabesName', function (req, res) {
+app.put('/api/nyNabes/:id', function (req, res) {
   // set the value of the id
-  var targetNabe = req.params.nabesName;
+  var targetNabe = req.params.id;
   // find blogpost in db by id
-  NabesNY.findOne({nabesName: targetNabe}, function (err, foundNyNabe) {
+  NabesNY.findOne({_id: targetNabe}, function (err, foundNyNabe) {
     // update the blogpost's word and definition
     foundNyNabe.nabesName = req.body.nabesName;
     foundNyNabe.nabesTags = req.body.nabesTags;
@@ -260,15 +310,16 @@ app.put('/api/nyNabes/:nabesName', function (req, res) {
 });
 
 // delete SF nabes
-app.delete('/api/nyNabes/:nabesName', function (req, res) {
+app.delete('/api/nyNabes/:id', function (req, res) {
   // set the value of the id
-  var targetNabe = req.params.nabesName;
+  var targetNabe = req.params.id;
 
   // find blogpost in db by id and remove
-  NabesNY.findOneAndRemove({nabesName: targetNabe}, function (err, deletedNabe) {
+  NabesNY.findOneAndRemove({_id: targetNabe}, function (err, deletedNabe) {
     res.json(deletedNabe);
   });
 });
+
 
 // listen on port 3000
 app.listen(process.env.PORT || 3000, function () {
