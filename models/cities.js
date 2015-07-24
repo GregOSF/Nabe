@@ -13,12 +13,9 @@ var citySchema = new Schema({
 	}
 });
 
-
-//create models for city and nabe
+//create models for City
 var City = mongoose.model('City', citySchema);
-// var NabesNY = mongoose.model('nabesNY', NabesNYSchema);
 
 // export models
 module.exports = City;
 
-// module.exports = NabesNY;
