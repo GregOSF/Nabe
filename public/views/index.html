@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <!-- Normalize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+    <!-- Animation Plugin -->
+    <link rel="stylesheet" href="../styles/animate.css">
     <!-- YOUR CSS -->
     <link type="text/css" rel="stylesheet" href="../styles/style.css">
 </head>
@@ -29,9 +31,7 @@
 	    </div>
 
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      <ul class="nav navbar-nav">
-	        <li><a href="/">?</a></li>
-	      </ul>
+	     
 	      <ul class="nav navbar-nav navbar-right" id="nav-links">
 	        <!-- underscore template for nav links -->
 	        <script type="text/template" id="nav-template">
@@ -99,81 +99,25 @@
 	  </div>
 	</div>
 
-	
-
-
-
-
-
 	<!-- bootstrap container -->
 	<div class="container">
 		<div class="row">
 			<div class="column-lg-12" id="titleContainer">
-				<h1><span id="nabetitle">nabe</span></h1>
-			</div>
+				<h1><span class="animated fadeInUp" id="nabetitle">nabe</span></h1>
+				<br>
+				<h3 class="animated fadeInUp" id="selectNabe">select two cities to compare</h3>
+			</div>			
 		</div>
 		<div class='row'>
-			<div class='col-sm-6'>
-				<h2 class='text-center'>San Francisco</h2>
+			<div class='col-sm-6' id="sfNabesList">
+				<h2 class='text-center animated fadeInUp' id="sfHead">san francisco</h2>
 				<div class='list-group' id='sf-list'></div>
 			</div>
-			<div class='col-sm-6'>
-				<h2 class='text-center'>New York</h2>
+			<div class='col-sm-6' id="nyNabesList">
+				<h2 class='text-center animated fadeInUp' id="nyhead">new york</h2>
 				<div class='list-group' id='nyc-list'></div>
 			</div>
 		</div>
-
-<!-- 		<div class="row top-buffer">
-			<div class="column-lg-12">
-				<div class="dropdown">
-				  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-				    Select a City
-				    <span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="citySelect">
-
-<!-- 				    <li><a href="#">San Francisco</a></li>
-				    <li><a href="#">New York</a></li>
-				  </ul>
-				</div>
-			</div>
-		</div> --> -->
-<!-- 		<div class="row top-buffer">
-			<div class="column-lg-12">
-				<div class="dropdown">
-				  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-				    Select a Neighborhood
-				    <span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider" id="nabeSelect">
-
-				    <li><a href="#">San Francisco</a></li>
-				    <li><a href="#">New York</a></li>
-				    <li role="separator" class="divider"></li>
-				    <li><a href="#">Add a Nabe</a></li>
-				    <li role="separator" class="divider"></li>
-				    <li><a href="#">Edit a Nabe Tag</a></li>
-				    <li role="separator" class="divider"></li>
-				    <li><a href="#">Delete a Nabe</a></li>
-				  </ul>
-				</div>
-			</div>
-		</div>
-		<div class="row top-buffer">
-	        <div class="col-xs-6">
-	        	 <div class="panel panel-default alphaClass">
-	        	 	<div id="nabeSfPanel">
-	        	 		
-	        	 	</div>
-	        	 	
-	        	 </div>
-	        </div>
-	        <div class="col-xs-6">
-	        	<div class="panel panel-default alphaClass">
-	        		<p>NY NABE</p>	
-	        	</div>
-			</div>
-		</div> -->
 	</div>
 
 	<!-- SCRIPTS -->
@@ -188,33 +132,9 @@
 		
 		<!-- Nabe Template -->
 		<script id="nabe-link-template" type="text/template">
-			<a href="#" id="<%= _id %>" class="<%= nabeClass %> list-group-item">
+			<a href="#" id="<%= _id %>" class="<%= nabeClass %> list-group-item animated fadeInUp">
 			  <%= nabesName %>
 			</a>
 		</script>
-
-
-	    <!-- TEMPLATE FOR CITY DROPDOWN -->
-		<script type="text/template" id="cityListTemplate">
-		    <div id="cityListItems" data-id="<%= _id %>">
-		    	<li><a href="#" data-toggle="<%= cityName %>" id="cityClick"> <%= cityName %> </a></li>
-		    </div>
-		</script>
-
-
-	    <!-- TEMPLATE FOR NABE DROPDOWN -->
-	    <script type="text/template" id="nabeListTemplate">
-	        <div id="nabeListItems" data-id="<%= _id %>">
-	        	<li><a href="#" data-toggle="<%= nabesName %>" id="nabeClick"> <%= nabesName %> </a></li>
-	        </div>
-	    </script>
-
-	    <!-- TEMPLATE FOR NABE COMPARE SF -->
-	    <script type="text/template" id="nabeSfTemp">
-	    	<div class="nabeLizt" id="nabeListItems" data-id="<%= _id %>">
-	    		<li><%= nabesName %></li>
-	    		<li><%= nabesTags %></li>
-	    	</div>
-	    </script>
 </body>
 </html>
