@@ -1,10 +1,3 @@
-/*#jumbo {
-	background-color: rgba(255,255,255,0.5);
-	text-align: center;
-	background: url('http://cahillfilms.com/wp-content/uploads/2014/02/C9A79211.jpg');
-	background-size: cover;
-	padding-top: 50px;
-}	*/
 
 @import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900);
 
@@ -13,12 +6,6 @@
 #nabeNav {
 	background-color: black;
 	
-}
-#nabetitle {
-	color: white;
-	letter-spacing: 20px;
-	font-size: 150px;
-
 }
 
 #pickCityTitle {
@@ -54,6 +41,43 @@ body {
 .alphaClass {
 	background-color: transparent;
 	color: white;
+}
+
+#nabetitle {
+    color: white;
+	letter-spacing: 25px;
+	font-size: 150px;
+ 	-webkit-animation-duration: 4s;
+    /*animation: fadein 4s;*/
+}
+
+#selectNabe {
+	color: white;
+	letter-spacing: 3px;
+	animation-duration: 4s;
+	animation-delay: 1s;
+}
+
+
+#sfHead {
+	color: white;
+	letter-spacing: 3px;
+	animation-duration: 3s;
+	animation-delay: 2s;
+}
+
+#nyhead {
+	color: white;
+	letter-spacing: 3px;
+	animation-duration: 3s;
+	animation-delay: 2s;
+}
+
+.list-group-item {
+	/*background-color: rgba(255,255,255,0.2);*/
+	background-color: rgba(255, 255, 255, 0.7);
+	font-size: 14px;
+	letter-spacing: 2px;	
 }
 
 
