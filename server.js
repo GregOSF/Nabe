@@ -9,9 +9,7 @@ var express = require('express'),
     City = require('./models/cities.js'),
     session = require('express-session'),
     User = require('./models/user');
-    // NabesNY = require('./models/nabes');
-    // Seed = require('./seed.js');
-
+ 
 // // connect mongoose
 // mongoose.connect("mongodb://localhost/nabes");
 
@@ -70,30 +68,6 @@ app.use('/', function (req, res, next) {
   next();
 });
 
-
-// app.post('/nyc-search', function (req, res) {
-//   console.log(req.body._id);
-
-//   NabesSF.findById(req.body._id).exec(function(err, nabe) {
-//     NabesNY.find({ nabesTags: nabe.nabesTags }).exec(function(err, nabes) {
-//       var nabeIds = _.pluck(nabes, '_id')
-//       res.json(nabeIds);
-//     })
-//   })
-// })
-
-// app.post('/sf-search', function (req, res) {
-//   console.log(req.body);
-//   NabesNY.findOne(req.body).exec(function(err, nabe) {
-//     NabesSF.find({ nabesTags: nabe.nabesTags }).exec(function(err, nabes) {
-//       var nabeIds = _.pluck(nabes, '_id')
-//     })
-//   })
-  
-//   res.json(nabeIds);
-// })
-
-
 // signup route with placeholder response
 app.get('/api/signup', function (req, res) {
   res.send('coming soon');
@@ -101,10 +75,8 @@ app.get('/api/signup', function (req, res) {
 
 // user submits the signup form
 app.post('/api/users', function (req, res) {
-
   // grab user data from params (req.body)
   var newUser = req.body.user;
-
   // create new user with secure password
   User.createSecure(newUser.email, newUser.password, function (err, user) {
     // res.send(user);
@@ -122,15 +94,12 @@ app.get('/api/users/current', function (req, res) {
 });
 
 app.post('/api/login', function (req, res) {
-
   // grab user data from params (req.body)
   var userData = req.body.user;
-
   // call authenticate function to check if password user entered is correct
   User.authenticate(userData.email, userData.password, function (err, user) {
     // saves user id to session
     req.login(user);
-
     // redirect to user profile
     res.redirect('/');
   });
@@ -149,7 +118,7 @@ app.get('/logout', function (req, res) {
 // END AUTHENTICATION
 
 
-// ROUTES FOR SEARCHES
+// ROUTES FOR KEYWORD
 
 app.post('/nyc-search', function (req, res) {
   console.log(req.body._id);
@@ -171,8 +140,6 @@ app.post('/sf-search', function (req, res) {
   });
   
 });
-
-
 
 // ROUTES FOR CITIES
 
@@ -279,7 +246,6 @@ app.get('/api/nyNabes/:nabesName', function (req, res) {
     res.json(foundNabe);
   });
 });
-
 
 // set up post route to post new nabes
 app.post('/api/nyNabes', function (req, res) {
